@@ -10,6 +10,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ParkyAPI.Controllers.NationalParkController.GetNationalParks(System.Int32)">
+            <summary>
+            Get National Park By id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ParkyAPI.Controllers.NationalParkController.createNationalPark(ParkyAPI.Models.Dtos.NationalParkDto)">
             <summary>
             Create New National Park

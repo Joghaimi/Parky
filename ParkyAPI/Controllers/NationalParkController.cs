@@ -25,6 +25,7 @@ namespace ParkyAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(200,Type=typeof(List<NationalParkDto>))]
         public IActionResult GetNationalParks()
         {
 
@@ -36,7 +37,15 @@ namespace ParkyAPI.Controllers
             }
             return Ok(objDtos);
         }
+
+        /// <summary>
+        /// Get National Park By id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:int}", Name = "GetNationalParks")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200,Type=typeof(NationalParkDto))]
         public IActionResult GetNationalParks(int id)
         {
             var obj = _npReosetory.GetNationalPark(id);
@@ -53,6 +62,10 @@ namespace ParkyAPI.Controllers
         /// <param name="nationalParkDto"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(201)]
         public IActionResult createNationalPark([FromBody] NationalParkDto nationalParkDto)
         {
             // Filter Data
@@ -79,7 +92,11 @@ namespace ParkyAPI.Controllers
         /// <param name="id"></param>
         /// <param name="nationalParkDto"></param>
         /// <returns></returns>
+    
         [HttpPatch("{id:int}", Name = "updateNationalPark")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public IActionResult updateNationalPark(int id, [FromBody] NationalParkDto nationalParkDto)
         {
             if (nationalParkDto == null || id != nationalParkDto.Id)
@@ -99,7 +116,11 @@ namespace ParkyAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+    
         [HttpDelete("{id:int}", Name = "DeleteNationlPark")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(201)]
         public IActionResult delateNAtionalPark(int id)
         {
             if (!_npReosetory.NationalParkExists(id))
