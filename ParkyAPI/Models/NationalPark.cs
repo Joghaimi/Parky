@@ -2,6 +2,7 @@
 
 namespace ParkyAPI.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class NationalPark
     {
         [Key]
@@ -13,4 +14,6 @@ namespace ParkyAPI.Models
         public DateTime Create { get; set; }
         public DateTime Estaplished { get; set; }
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
 }

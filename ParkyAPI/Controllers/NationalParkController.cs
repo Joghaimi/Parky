@@ -20,6 +20,10 @@ namespace ParkyAPI.Controllers
             _mapper = mapper;
 
         }
+        /// <summary>
+        /// Get All National Parks 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetNationalParks()
         {
@@ -43,6 +47,11 @@ namespace ParkyAPI.Controllers
             }
             return NotFound();
         }
+        /// <summary>
+        /// Create New National Park
+        /// </summary>
+        /// <param name="nationalParkDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult createNationalPark([FromBody] NationalParkDto nationalParkDto)
         {
@@ -64,8 +73,12 @@ namespace ParkyAPI.Controllers
             return Ok(nationalPark);
             //return CreatedAtRoute("GetNationalParks", new { id = nationalPark.Id },nationalPark);
         }
-
-
+        /// <summary>
+        /// Update Existing National Park
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nationalParkDto"></param>
+        /// <returns></returns>
         [HttpPatch("{id:int}", Name = "updateNationalPark")]
         public IActionResult updateNationalPark(int id, [FromBody] NationalParkDto nationalParkDto)
         {
@@ -81,7 +94,11 @@ namespace ParkyAPI.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Delete National Park
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:int}", Name = "DeleteNationlPark")]
         public IActionResult delateNAtionalPark(int id)
         {
