@@ -10,6 +10,7 @@ namespace ParkyAPI.Controllers
 {
     [Route("api/Trails")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "Trails")]
     public class TailController : ControllerBase
     {
         private ITrailsRepository _ITReosetory;

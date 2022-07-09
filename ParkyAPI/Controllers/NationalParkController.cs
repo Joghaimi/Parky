@@ -10,6 +10,7 @@ namespace ParkyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "NationalPark")]
     public class NationalParkController : ControllerBase
     {
         private INationalParkRepository _npReosetory;

@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServe
 
 
 builder.Services.AddScoped<INationalParkRepository, NationalParkRepository>();
-builder.Services.AddScoped<ITrailsRepository,TrailsRepository>();
+builder.Services.AddScoped<ITrailsRepository, TrailsRepository>();
 builder.Services.AddAutoMapper(typeof(ParkyMappings));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,6 +21,17 @@ builder.Services.AddSwaggerGen(
     options =>
     {
         options.IncludeXmlComments("ParkyAPI.xml");
+        options.SwaggerDoc("NationalPark",
+            new Microsoft.OpenApi.Models.OpenApiInfo()
+            {
+                Title = "NationalPark Api"
+            });
+        options.SwaggerDoc("Trails",
+          new Microsoft.OpenApi.Models.OpenApiInfo()
+          {
+              Title = "Trails Api"
+          });
+
     });
 
 var app = builder.Build();
@@ -29,7 +40,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/NationalPark/swagger.json", "NationalPark Api");
+        options.SwaggerEndpoint("/swagger/Trails/swagger.json", "Trails Api");
+        //options.RoutePrefix = ""; 
+    });
 }
 
 app.UseHttpsRedirection();
