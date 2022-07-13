@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ParkyAPI;
 using ParkyAPI.ParkyMapper;
@@ -26,13 +27,20 @@ builder.Services.AddSwaggerGen(
             {
                 Title = "NationalPark Api"
             });
-        options.SwaggerDoc("Trails",
-          new Microsoft.OpenApi.Models.OpenApiInfo()
-          {
-              Title = "Trails Api"
-          });
+        //options.SwaggerDoc("Trails",
+        //  new Microsoft.OpenApi.Models.OpenApiInfo()
+        //  {
+        //      Title = "Trails Api"
+        //  });
 
     });
+builder.Services.AddApiVersioning(options =>
+    {
+        options.AssumeDefaultVersionWhenUnspecified = true;
+        options.DefaultApiVersion = new ApiVersion(1, 0);
+        options.ReportApiVersions = true;
+    }
+    );
 
 var app = builder.Build();
 
@@ -43,7 +51,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/NationalPark/swagger.json", "NationalPark Api");
-        options.SwaggerEndpoint("/swagger/Trails/swagger.json", "Trails Api");
+        //options.SwaggerEndpoint("/swagger/Trails/swagger.json", "Trails Api");
         //options.RoutePrefix = ""; 
     });
 }
